@@ -28,7 +28,7 @@ export default createGlobalStyle`
         --color-buttom-3:var(--color-grey-3);
         --color-buttom-3-focus:var(--color-grey-2);
 
-        --color-white-button:var(--color-white);
+        --color-text-button:var(--color-white);
 
 
         --color-listCard:var(--color-grey-3);
@@ -41,6 +41,7 @@ export default createGlobalStyle`
         
         --color-background:var(--color-grey-4);
         --color-background-modal:var(--color-grey-3);
+        --color-background-header-2:var(--color-grey-2);
 
         --color-background-input:var(--color-grey-2);
         --color-text-input:var(--color-grey-1);
@@ -53,6 +54,9 @@ export default createGlobalStyle`
         
 
         --font-global:'Inter', sans-serif;
+
+
+        --border-radius:4px;
     }
 
     html, body, div, span, applet, object, iframe,

@@ -1,14 +1,27 @@
 import { ReactNode } from "react"
 import { ModalStyled } from "./style"
 
-interface IPropsModal {
-    children:ReactNode
+export interface IMarginPosition {
+    y?:boolean,
+    x?:boolean,
 }
 
-export default function Modal( { children }:IPropsModal ){
+export interface IPaddingPosition {
+    y?:boolean,
+    x?:boolean,
+}
+
+interface IPropsModal {
+    children:ReactNode,
+    color?:string,
+    marginPosition?:IMarginPosition,
+    paddingPosition?:IPaddingPosition,
+}
+
+export default function Modal( { children, color, marginPosition, paddingPosition }:IPropsModal ){
 
     return(
-        <ModalStyled>
+        <ModalStyled color={color} marginPosition={marginPosition} paddingPosition={paddingPosition}>
             { children }
         </ModalStyled>
     )

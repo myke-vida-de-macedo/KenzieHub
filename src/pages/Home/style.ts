@@ -11,5 +11,5 @@ export const HomeStyled = styled.div`
     flex-direction: column;
     align-items: center;
 
-    background-color: #222;
+    background-color: var(--color-background);
 `

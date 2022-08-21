@@ -7,9 +7,13 @@ export const LoginStyled = styled.div`
     height: 100%;
     min-height: 100vh;
 
+    padding: 12px;
+
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 
-    background-color: #222;
+    background-color: var(--color-background);
 `
+
