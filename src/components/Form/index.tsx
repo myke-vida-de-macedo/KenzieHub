@@ -2,13 +2,14 @@ import { ReactNode } from "react"
 import { FormStyled } from "./style"
 
 interface IPropsForm {
-    children:ReactNode
+    children:ReactNode,
+    onSubimt?:any
 }
 
-export default function Form( { children }:IPropsForm ){
+export default function Form( { children, onSubimt }:IPropsForm ){
 
     return(
-        <FormStyled>
+        <FormStyled onSubmit={onSubimt}>
             { children }
         </FormStyled>
     )

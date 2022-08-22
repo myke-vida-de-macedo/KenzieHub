@@ -9,9 +9,9 @@ interface IPropsProvider {
 
 export const Provider = ( { children }:IPropsProvider ) => (
 
-    <AuthProvider>
-        <RequestProvider>
+    <RequestProvider>
+        <AuthProvider>
             { children }
-        </RequestProvider>
-    </AuthProvider>
+        </AuthProvider>
+    </RequestProvider>
 )
