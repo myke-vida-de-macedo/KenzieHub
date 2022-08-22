@@ -3,7 +3,9 @@ import styled, { css } from 'styled-components'
 interface IPropsButtonStyled {
     fullWidth?:boolean,
     size?:"small" | "medium" | "large",
-    color?: "grey" | "pink" | "black" | "transparent"
+    color?: "grey" | "pink" | "black" | "black2" | "transparent"
+    maxWidth?:number,
+    mode?:"vertical"
 }
 
 export const ButtonStyled = styled.div<IPropsButtonStyled>`
@@ -12,10 +14,9 @@ export const ButtonStyled = styled.div<IPropsButtonStyled>`
 
     ${({fullWidth})=> fullWidth&&css` width:100%;`}
 
-    display: flex;
-    justify-content: center;
-
     .MuiButtonBase-root{
+
+        text-transform:capitalize;
 
         ${({ size })=> 
             size === "medium" ? 
@@ -28,10 +29,23 @@ export const ButtonStyled = styled.div<IPropsButtonStyled>`
                 `
         }
 
-        transition: 300ms;
+    display: flex;
+    align-items: center;
+    ${({ mode })=>
+        mode === "vertical" ?
+            css`
+                justify-content: space-between;
+            `
+        :
+            css`
+                justify-content: center;
+            `
+    }
 
+        transition: 300ms;
+        
         width: 100%;
-        max-width: 369px;
+        max-width:${({ maxWidth }) => maxWidth ? `${maxWidth}px` : "369px"};
 
         margin: 8px 0px;
 
@@ -49,7 +63,11 @@ export const ButtonStyled = styled.div<IPropsButtonStyled>`
                 css`
                     background-color:var(--color-buttom-1);
                 `
-            :   
+            :color === "black2" ?  
+                css`
+                    background-color:var(--color-grey-4);
+                `
+            :
                 css`
                     background-color:transparent;
                     box-shadow: none;
@@ -74,6 +92,10 @@ export const ButtonStyled = styled.div<IPropsButtonStyled>`
             :color === "pink" ?
                 css`
                     background-color:var(--color-buttom-1-focus);
+                `
+            :color === "black2" ?  
+                css`
+                    background-color:var(--color-grey-2);
                 `
             :
                 css`

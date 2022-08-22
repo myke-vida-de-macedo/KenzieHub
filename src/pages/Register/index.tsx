@@ -15,8 +15,6 @@ import { useRequest } from "../../provider/Request";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { shemaRegister } from "../../validation/register.validation";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../provider/Auth";
-import { useEffect } from "react";
 
 export interface ICreateUser {
     email: string,
@@ -30,9 +28,6 @@ export interface ICreateUser {
 
 
 export default function Register(){
-
-    const { auth, checkAuthorization } = useAuth()
-    useEffect(()=>{ checkAuthorization("/home") },[auth])
 
     const navigate = useNavigate()
     const { createUser } = useRequest()
@@ -56,8 +51,9 @@ export default function Register(){
     return(
         <TransitionPage>
             <RegisterStyled>
-                <Modal marginPosition={{x:true}}>
+                <Modal maxWidth="small" marginPosition={{x:true}}>
                     <Header 
+                        colorTitle="pink"
                         onClick={goLogin}
                         size="large" 
                         name="KenzieHub" 
@@ -67,12 +63,13 @@ export default function Register(){
                     />
                 </Modal>
                 <Modal 
+                    maxWidth="small"
                     color="grey" 
                     marginPosition={{x:true}} 
                     paddingPosition={{x:true, y:true}}
                 >
-                    <Title size="large" margin="large">Crie sua conta</Title> 
-                    <Description margin="medium">Rapido e grátis, vamos nessa</Description>
+                    <Title marginPosition={{y:true, x:true}} size="large" margin="large">Crie sua conta</Title> 
+                    <Description marginPosition={{y:true, x:true}} margin="medium">Rapido e grátis, vamos nessa</Description>
                     <Form onSubimt={handleSubmit(handleCreateUser)}>
                         <Input 
                             label="Nome"

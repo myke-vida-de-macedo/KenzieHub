@@ -43,7 +43,7 @@ export const HeaderStyled = styled.div<IPropsHeaderStyled>`
             `
         :
             css`
-                    
+                    height: 100%;
             `
     }
 
