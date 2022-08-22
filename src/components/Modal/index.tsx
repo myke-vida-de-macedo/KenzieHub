@@ -16,12 +16,16 @@ interface IPropsModal {
     color?:string,
     marginPosition?:IMarginPosition,
     paddingPosition?:IPaddingPosition,
+    maxWidth?:"small" | "medium" | "large";
+    height?: number,
+    borderBottom?:boolean,
+    mode?: "vertical",
 }
 
-export default function Modal( { children, color, marginPosition, paddingPosition }:IPropsModal ){
+export default function Modal( { children, color, marginPosition, paddingPosition, maxWidth, height, borderBottom, mode }:IPropsModal ){
 
     return(
-        <ModalStyled color={color} marginPosition={marginPosition} paddingPosition={paddingPosition}>
+        <ModalStyled color={color} marginPosition={marginPosition} paddingPosition={paddingPosition} maxWidth={maxWidth} height={height} borderBottom={borderBottom} mode={mode}>
             { children }
         </ModalStyled>
     )

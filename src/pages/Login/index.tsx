@@ -33,17 +33,17 @@ export default function Login(){
     return(
         <TransitionPage>
             <LoginStyled>
-                <Modal marginPosition={{x:true}}>
-                    <Header size="large" name="KenzieHub"/>
+                <Modal maxWidth="small" marginPosition={{x:true}}>
+                    <Header colorTitle="pink" size="large" name="KenzieHub"/>
                 </Modal>
-                <Modal color="grey" marginPosition={{x:true}} paddingPosition={{x:true, y:true}}> 
-                    <Title size="large" margin="large">Login</Title>
+                <Modal maxWidth="small" color="grey" marginPosition={{x:true}} paddingPosition={{x:true, y:true}}> 
+                    <Title size="large" margin="large" marginPosition={{y:true, x:true}}>Login</Title>
                     <Form onSubimt={handleSubmit(login)}>
                         <Input label="Email" register={register} name="email" message={email?.message}/>
-                        <Input label="Senha " register={register} name="password" message={password?.message}/>
+                        <Input type="password" label="Senha " register={register} name="password" message={password?.message}/>
                         <Button type="submit" color="pink" fullWidth>Entrar</Button>
                     </Form>
-                    <Description>Ainda não possui uma conta?</Description>
+                    <Description marginPosition={{y:true, x:true}}>Ainda não possui uma conta?</Description>
                     <Button onClick={goRegister} type="button" color="grey" fullWidth>Cadastre-se</Button>
                 </Modal>
             </LoginStyled>

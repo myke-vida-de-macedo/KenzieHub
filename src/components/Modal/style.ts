@@ -5,6 +5,10 @@ interface IPropsStyledModal {
     color?:string,
     marginPosition?:IMarginPosition,
     paddingPosition?:IPaddingPosition,
+    maxWidth?: "small" | "medium" | "large";
+    height?: number,
+    borderBottom?:boolean,
+    mode?: "vertical",
 }
 
 export const ModalStyled = styled.div<IPropsStyledModal>`
@@ -14,8 +18,35 @@ export const ModalStyled = styled.div<IPropsStyledModal>`
     transition: 200ms;
 
     width: 100%;
-    max-width: 369px;
-    height: auto;
+    ${({maxWidth})=> 
+        maxWidth === "large" ?
+            css`
+                max-width: 780px;
+            `
+        : maxWidth === "small" ?
+            css`
+                max-width: 369px;
+            `
+        :
+            css`
+                max-width: 100%;
+            `
+    }
+
+    ${({ borderBottom })=> borderBottom&&css`border-bottom:1px solid var(--color-grey-2);`}
+
+    ${({height})=> 
+        height ?
+            css`
+                height: ${`${height}px`};
+            `
+        :   
+            css`
+                height: auto;
+            `
+    }
+
+   
 
     ${({marginPosition})=> 
         marginPosition?.y && marginPosition?.x ? 
@@ -55,12 +86,29 @@ export const ModalStyled = styled.div<IPropsStyledModal>`
             `
     }
 
-      
-    
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+
+    ${({ mode }) => 
+        mode === "vertical" ? 
+            css`
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+
+                @media(min-width:430px){
+                    justify-content: space-between;
+                }
+            `
+        :
+            css`
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+            `
+    }
+    
+   
+    
 
     ${({ color })=>
         color === "black"? 
