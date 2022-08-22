@@ -18,7 +18,7 @@ export default function ButtonEdited( { children, size, fullWidth, color, type, 
 
     return(
         <ButtonStyled fullWidth={fullWidth} size={size} color={color} maxWidth={maxWidth} mode={mode}>
-            <Button onClick={onClick} type={type} size={ "medium" } variant="contained">{ children }</Button>
+            <Button onClick={onClick} type={type} size={ size } variant="contained">{ children }</Button>
         </ButtonStyled>
     )
 }

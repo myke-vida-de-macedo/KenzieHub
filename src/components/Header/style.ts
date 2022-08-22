@@ -23,7 +23,7 @@ export const HeaderStyled = styled.div<IPropsHeaderStyled>`
             `
     }   
 
-    
+    border-radius: 4px 4px 0px 0px;
 
     width: 100%;
     

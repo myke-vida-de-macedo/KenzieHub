@@ -25,7 +25,14 @@ export const AuthProvider = ( { children }:IPropsAuth ) => {
 
     const login = ( user:ILoginUser ) => {
 
-        const toastId = toast.loading("Carregando")
+        const toastId = toast.loading("Carregando",{
+            style: {
+                font: 'Inter',
+                borderRadius: '10px',
+                background: '#333',
+                color: '#fff',
+              },
+        })
 
         loginUser( user )
             .then( ({ data:{ token, user }, status }) => {
@@ -36,12 +43,26 @@ export const AuthProvider = ( { children }:IPropsAuth ) => {
                     localStorage.setItem("@KenzieHub:user", JSON.stringify( user ))
                     
                     setAuth(true)
-                    toast.success("usuario logado", {id:toastId})
+                    toast.success("usuario logado", {
+                        id:toastId,
+                        style: {
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#fff',
+                          },
+                    })
                     navigate("/home")
                 }
             } )
             .catch( _ =>{
-                toast.error("Usuario invalido", {id:toastId})
+                toast.error("Usuario invalido", {
+                    id:toastId,
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                      },
+                })
             })
     }
 
@@ -51,7 +72,13 @@ export const AuthProvider = ( { children }:IPropsAuth ) => {
         localStorage.removeItem("@KenzieHub:token")
         localStorage.removeItem("@KenzieHub:user")
 
-        toast.success("Usuario desconectado")
+        toast.success("Usuario desconectado", {
+            style: {
+                borderRadius: '10px',
+                background: '#333',
+                color: '#fff',
+              },
+        })
     }
 
     const checkAuthorization = ( way: string ) => {
@@ -69,10 +96,15 @@ export const AuthProvider = ( { children }:IPropsAuth ) => {
                 if( checkEmail && checkName && checkId && checkStatus ){
 
                     setAuth(true)
-                    toast.success("Auto login realizado" )
                     navigate(way)
                 }else{
-                    toast.error("Ops, isso não devia acontecer" )
+                    toast.error("Ops, isso não devia acontecer",{
+                        style: {
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#fff',
+                          },
+                    } )
                 }
             } )
             .catch( _ => navigate("/login") )

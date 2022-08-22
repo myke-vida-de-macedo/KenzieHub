@@ -20,12 +20,22 @@ interface IPropsModal {
     height?: number,
     borderBottom?:boolean,
     mode?: "vertical",
+    borderRadiusPosition?: "all" | "top" | "bottom"
 }
 
-export default function Modal( { children, color, marginPosition, paddingPosition, maxWidth, height, borderBottom, mode }:IPropsModal ){
+export default function Modal( { children, color, marginPosition, paddingPosition, maxWidth, height, borderBottom, mode, borderRadiusPosition }:IPropsModal ){
 
     return(
-        <ModalStyled color={color} marginPosition={marginPosition} paddingPosition={paddingPosition} maxWidth={maxWidth} height={height} borderBottom={borderBottom} mode={mode}>
+        <ModalStyled 
+            color={color} 
+            marginPosition={marginPosition} 
+            paddingPosition={paddingPosition} 
+            maxWidth={maxWidth} 
+            height={height} 
+            borderBottom={borderBottom} 
+            mode={mode}
+            borderRadiusPosition={borderRadiusPosition}
+        >
             { children }
         </ModalStyled>
     )

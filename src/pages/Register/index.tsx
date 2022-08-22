@@ -16,6 +16,8 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { shemaRegister } from "../../validation/register.validation";
 import { useNavigate } from "react-router-dom";
 
+import toast from "react-hot-toast";
+
 export interface ICreateUser {
     email: string,
     password: string,
@@ -42,8 +44,25 @@ export default function Register(){
         console.log( propertiesData )
 
         createUser( propertiesData )
-            .then( result => console.log( result ) )
-            .catch( _ => {} )
+            .then( _ => {
+                toast.success("Usuario cadastrado", {
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                      },
+                })
+            } )
+            .catch( _ => {
+                toast.error("Email já existe", {
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                      },
+                })
+
+            } )
     }
 
     const goLogin = () => navigate("/login")
@@ -63,6 +82,7 @@ export default function Register(){
                     />
                 </Modal>
                 <Modal 
+                    borderRadiusPosition="all"
                     maxWidth="small"
                     color="grey" 
                     marginPosition={{x:true}} 
