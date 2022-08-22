@@ -2,6 +2,8 @@ import Button from "../Button"
 import Title from "../Title"
 import { HeaderStyled } from "./style"
 
+import { IMarginPosition } from "../Title"
+
 interface IPropsHeader {
     buttonName?:string,
     color?: "grey" ,
@@ -11,14 +13,16 @@ interface IPropsHeader {
     sizeButton?: "small" | "medium" | "large",
     onClick?:()=> void,
     colorTitle?: "pink",
-    sizeTitle?: "small" | "large" | "medium"
+    sizeTitle?: "small" | "large" | "medium",
+    marginTitle?: "small" | "medium" | "large",
+    marginPositionTitle?:IMarginPosition
 }
 
-export default function Header( { buttonName, colorButton, sizeButton, color, name, size, onClick, colorTitle, sizeTitle }:IPropsHeader ){
+export default function Header( { buttonName, colorButton, sizeButton, color, name, size, onClick, colorTitle, sizeTitle, marginTitle, marginPositionTitle }:IPropsHeader ){
 
     return(
         <HeaderStyled color={color} size={size} buttonName={buttonName}>
-            <Title color={colorTitle} size={sizeTitle}>{name}</Title>
+            <Title color={colorTitle} size={sizeTitle} margin={marginTitle} marginPosition={marginPositionTitle}>{name}</Title>
             {
                 buttonName&&<Button onClick={onClick} type="button" size={sizeButton} color={colorButton}>{buttonName}</Button>
 

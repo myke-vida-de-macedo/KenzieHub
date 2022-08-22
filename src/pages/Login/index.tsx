@@ -36,7 +36,7 @@ export default function Login(){
                 <Modal maxWidth="small" marginPosition={{x:true}}>
                     <Header colorTitle="pink" size="large" name="KenzieHub"/>
                 </Modal>
-                <Modal maxWidth="small" color="grey" marginPosition={{x:true}} paddingPosition={{x:true, y:true}}> 
+                <Modal borderRadiusPosition="all" maxWidth="small" color="grey" marginPosition={{x:true}} paddingPosition={{x:true, y:true}}> 
                     <Title size="large" margin="large" marginPosition={{y:true, x:true}}>Login</Title>
                     <Form onSubimt={handleSubmit(login)}>
                         <Input label="Email" register={register} name="email" message={email?.message}/>

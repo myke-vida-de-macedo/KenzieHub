@@ -9,6 +9,7 @@ interface IPropsStyledModal {
     height?: number,
     borderBottom?:boolean,
     mode?: "vertical",
+    borderRadiusPosition?: "all" | "top" | "bottom"
 }
 
 export const ModalStyled = styled.div<IPropsStyledModal>`
@@ -113,7 +114,7 @@ export const ModalStyled = styled.div<IPropsStyledModal>`
     ${({ color })=>
         color === "black"? 
             css`
-                background-color: var(--color-background);
+                background-color: var(--color-background-modal);
             `
         :color == "grey" ?
             css`
@@ -126,7 +127,24 @@ export const ModalStyled = styled.div<IPropsStyledModal>`
 
     }
 
-    border-radius: var(--border-radius);
+    ${({ borderRadiusPosition })=>
+        borderRadiusPosition === "all" ? 
+            css`
+                border-radius:  var(--border-radius);
+            `
+        :borderRadiusPosition === "top" ? 
+            css`
+                border-radius:  var(--border-radius)  var(--border-radius) 0px 0px;
+            `
+        :borderRadiusPosition === "bottom"? 
+            css`
+                border-radius: 0px 0px var(--border-radius)  var(--border-radius);
+            `
+        :
+            css`
+                border-radius: 0px;
+            `
+    }
 
     @media(min-width:369px){
 
