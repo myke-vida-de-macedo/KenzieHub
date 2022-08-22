@@ -10,41 +10,122 @@ import Description from "../../components/Description";
 import Header from "../../components/Header";
 import Select from "../../components/Select"
 
+import { useForm } from "react-hook-form";
+import { useRequest } from "../../provider/Request";
+import { yupResolver } from "@hookform/resolvers/yup"
+import { shemaRegister } from "../../validation/register.validation";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../provider/Auth";
+import { useEffect } from "react";
+
+export interface ICreateUser {
+    email: string,
+    password: string,
+    confirmPassword: string,
+    name: string,
+    bio: string,
+    contact: string,
+    course_module: string,
+}
+
+
 export default function Register(){
+
+    const { auth, checkAuthorization } = useAuth()
+    useEffect(()=>{ checkAuthorization("/home") },[auth])
+
+    const navigate = useNavigate()
+    const { createUser } = useRequest()
+
+
+    const { register, handleSubmit, formState:{ errors:{ name, email, password, confirmPassword, bio, contact, course_module } } } = useForm<ICreateUser>({
+        resolver:yupResolver(shemaRegister)
+    })
+
+    const handleCreateUser = ( { confirmPassword, ...propertiesData }:ICreateUser ) => {
+
+        console.log( propertiesData )
+
+        createUser( propertiesData )
+            .then( result => console.log( result ) )
+            .catch( _ => {} )
+    }
+
+    const goLogin = () => navigate("/login")
 
     return(
         <TransitionPage>
             <RegisterStyled>
                 <Modal marginPosition={{x:true}}>
-                    <Header size="large" name="KenzieHub" buttonName="voltar"/>
+                    <Header 
+                        onClick={goLogin}
+                        size="large" 
+                        name="KenzieHub" 
+                        buttonName="voltar" 
+                        colorButton="black" 
+                        sizeButton="small"
+                    />
                 </Modal>
-                <Modal color="grey" marginPosition={{x:true}} paddingPosition={{x:true, y:true}}>
+                <Modal 
+                    color="grey" 
+                    marginPosition={{x:true}} 
+                    paddingPosition={{x:true, y:true}}
+                >
                     <Title size="large" margin="large">Crie sua conta</Title> 
                     <Description margin="medium">Rapido e grátis, vamos nessa</Description>
-                    <Form>
+                    <Form onSubimt={handleSubmit(handleCreateUser)}>
                         <Input 
                             label="Nome"
+                            register={register} 
+                            name="name" 
+                            message={name?.message}
                             />
                         <Input 
-                            label="Email "
+                            label="Email"
+                            register={register} 
+                            name="email" 
+                            message={email?.message}
                         />
                         <Input 
-                            label="Senha "
+                            type="password"
+                            label="Senha"
+                            register={register} 
+                            name="password" 
+                            message={password?.message}
                         />
                         <Input 
-                            label="Confirmar Senha "
+                            type="password" 
+                            label="Confirmar Senha"
+                            register={register} 
+                            name="confirmPassword" 
+                            message={confirmPassword?.message}
                         />
                         <Input 
-                            label="Bio "
+                            label="Bio"
+                            register={register} 
+                            name="bio" 
+                            message={bio?.message}
                         />
                         <Input 
-                            label="Contato "
+                            label="Contato"
+                            register={register} 
+                            name="contact" 
+                            message={contact?.message}
                         />
                         <Select 
                             label="Selecionar Modulo" 
                             menu={["Primeiro Modulo", "Segundo Modulo", "Terçeiro Modulo", "Quarto Modulo", "Quinto Modulo", "Sexto Modulo"]}
+                            register={register} 
+                            name="course_module" 
+                            message={course_module?.message}
                         />
-                        <Button type="submit" color="pink" fullWidth>Cadastrar</Button>
+                        <Button 
+                            type="submit" 
+                            color="pink" 
+                            fullWidth
+                        >
+                            Cadastrar
+                        </Button>
                     </Form>
                 </Modal>
             </RegisterStyled>

@@ -21,8 +21,7 @@ interface IPropsContextRequest {
     deleteWork:( idWork:string ) => Promise<AxiosResponse<any, any>>,
 }
 
-interface ICreateUser {
-
+export interface ICreateUser {
     email: string,
     password: string,
     name: string,
@@ -31,8 +30,7 @@ interface ICreateUser {
     course_module: string,
 }
 
-interface ILoginUser {
-
+export interface ILoginUser {
     email: string,
     password: string,
 }
@@ -62,7 +60,7 @@ const requestContext = createContext<IPropsContextRequest>({} as IPropsContextRe
 
 export const RequestProvider = ( { children }:IPropsRequest ) => {
 
-    const Token = () => JSON.parse( localStorage.getItem("KenzieHub-token") as string )
+    const Token = () => localStorage.getItem("@KenzieHub:token") as string
     
     const profile = () => {
 

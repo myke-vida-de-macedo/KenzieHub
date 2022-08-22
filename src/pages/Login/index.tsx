@@ -8,8 +8,27 @@ import Button from "../../components/Button";
 import Title from "../../components/Title";
 import Description from "../../components/Description";
 import Header from "../../components/Header";
+import { useAuth } from "../../provider/Auth";
+
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup"
+import { shemaLogin } from "../../validation/login.validation"
+import { ILoginUser } from "../../provider/Request"
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login(){
+
+    const navigate = useNavigate()
+
+    const { auth ,login, checkAuthorization } = useAuth()
+    useEffect(()=>{ checkAuthorization("/home") },[auth])
+
+    const { register, handleSubmit, formState:{ errors:{ email, password } } } = useForm<ILoginUser>({
+        resolver:yupResolver(shemaLogin)
+    })
+
+    const goRegister = () => navigate("/register")
 
     return(
         <TransitionPage>
@@ -19,13 +38,13 @@ export default function Login(){
                 </Modal>
                 <Modal color="grey" marginPosition={{x:true}} paddingPosition={{x:true, y:true}}> 
                     <Title size="large" margin="large">Login</Title>
-                    <Form>
-                        <Input label="Email"/>
-                        <Input label="Senha "/>
+                    <Form onSubimt={handleSubmit(login)}>
+                        <Input label="Email" register={register} name="email" message={email?.message}/>
+                        <Input label="Senha " register={register} name="password" message={password?.message}/>
                         <Button type="submit" color="pink" fullWidth>Entrar</Button>
                     </Form>
                     <Description>Ainda não possui uma conta?</Description>
-                    <Button type="button" color="grey" fullWidth>Cadastre-se</Button>
+                    <Button onClick={goRegister} type="button" color="grey" fullWidth>Cadastre-se</Button>
                 </Modal>
             </LoginStyled>
         </TransitionPage>

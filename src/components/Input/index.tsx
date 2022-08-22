@@ -1,13 +1,19 @@
 import { InputStyled } from "./style"
 
+
+
 interface IPropsInput {
-    label:string
+    label:string,
+    type?: "password" | "text",
+    register?:any,
+    name?:string,
+    message?:string | undefined,
 }
 
-export default function Input( { label }:IPropsInput ){
-
+export default function Input( { label, type, register, name, message }:IPropsInput ){
+    
     return(
 
-        <InputStyled size="small" label={label} variant="filled" margin="dense" color="info"/>
+        <InputStyled error={ message ? true : false } type={type} size="small" label={message ? message : label} variant="filled" margin="dense" color="info" {...register(name)}/>
     )
 }
