@@ -35,12 +35,12 @@ const modalContext = createContext<IValueModal>( {} as IValueModal )
 
 export const ModalProvider = ( { children }:IPropsModal ) => {
 
-    const [ isCreateTech, setIsCreateTech ] = useState(false)
-    const [ isUpdateTech, setIsUpdateTech ] = useState(false)
-    const [ isCreateWork, setIsCreateWork ] = useState(false)
-    const [ isUpdateWork, setIsUpdateWork ] = useState(false)
+    const [ isCreateTech, setIsCreateTech ] = useState<boolean>(false)
+    const [ isUpdateTech, setIsUpdateTech ] = useState<boolean>(false)
+    const [ isCreateWork, setIsCreateWork ] = useState<boolean>(false)
+    const [ isUpdateWork, setIsUpdateWork ] = useState<boolean>(false)
     
-    const [ idProduct, setIdProduct] = useState("")
+    const [ idProduct, setIdProduct] = useState<string>("")
 
     const closeAllModal = () => {
         setIsCreateTech(false)
