@@ -1,38 +1,41 @@
-import Button from "../../../components/Button";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
+
+import Button from "../../../components/Button";
 import Background from "../../../components/Background";
 import Form from "../../../components/Form";
 import Header from "../../../components/Header";
 import Input from "../../../components/Input";
 import Modal from "../../../components/Modal";
-import { useModal } from "../../../provider/Modal";
-import { useList } from "../../../provider/List";
-import { useRequest } from "../../../provider/Request";
+
 import { IWork } from "../../../provider/Request"
-import toast from "react-hot-toast";
+import { useModal } from "../../../provider/Modal";
+import { useRequest } from "../../../provider/Request";
+
+import { configToast } from "../../../config/toast.config";
+
+import { shemaRegisterWork } from "../../../validation/RegisterWork.validation";
 
 export default function RegisterWork(){
 
-    const { register, handleSubmit, formState:{ errors:{ title, description, deploy_url } } } = useForm<IWork>()
+    const { register, handleSubmit, formState:{ errors:{ title, description, deploy_url } } } = useForm<IWork>({
+        resolver:yupResolver(shemaRegisterWork)
+    })
 
     const { closeAllModal } = useModal()
     const { createWork } = useRequest()
-    const { insertWork } = useList()
 
     const create = ( data:IWork ):void => {
 
         createWork( data )
             .then( ({ data:{ user, ...infowork } }) => {
 
-                toast.success("Trabalho cadastrada",{
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                      },
-                } )
+                toast.success("Trabalho cadastrada", configToast)
                 closeAllModal()
-                insertWork( infowork )
+            })
+            .catch( _ => {
+                toast.error("Trabalho já existe", configToast )
             })
     }
     return(
@@ -49,7 +52,12 @@ export default function RegisterWork(){
                         marginPositionTitle={{x:true}}
                     />
                 </Modal>
-                <Modal borderRadiusPosition="bottom" color="black" paddingPosition={{x:true, y:true}} maxWidth="small">
+                <Modal 
+                    borderRadiusPosition="bottom" 
+                    color="black" 
+                    paddingPosition={{x:true, y:true}} 
+                    maxWidth="small"
+                >
                     <Form onSubimt={handleSubmit(create)}>
                         <Input 
                             label="Nome" 

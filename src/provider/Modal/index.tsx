@@ -39,6 +39,7 @@ export const ModalProvider = ( { children }:IPropsModal ) => {
     const [ isUpdateTech, setIsUpdateTech ] = useState(false)
     const [ isCreateWork, setIsCreateWork ] = useState(false)
     const [ isUpdateWork, setIsUpdateWork ] = useState(false)
+    
     const [ idProduct, setIdProduct] = useState("")
 
     const closeAllModal = () => {

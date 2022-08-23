@@ -1,55 +1,54 @@
-import Button from "../../../components/Button";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
+
+import Button from "../../../components/Button";
 import Background from "../../../components/Background";
 import Form from "../../../components/Form";
 import Header from "../../../components/Header";
 import Input from "../../../components/Input";
 import Modal from "../../../components/Modal";
-import { useModal } from "../../../provider/Modal";
 import Nav from "../../../components/Nav";
-import toast from "react-hot-toast";
-import { useList } from "../../../provider/List";
+
+import { useModal } from "../../../provider/Modal";
 import { IUpdateWork ,useRequest } from "../../../provider/Request";
+
+import { configToast } from "../../../config/toast.config";
+
+import { shemaUpdateWork } from "../../../validation/UpdateWork.validation";
 
 export default function UpdateWork(){
 
-    const { register, handleSubmit, formState:{ errors:{ title, description, deploy_url } } } = useForm<IUpdateWork>()
+    const { register, handleSubmit, formState:{ errors:{ title, description, deploy_url } } } = useForm<IUpdateWork>({
+        resolver:yupResolver(shemaUpdateWork)
+    })
+
     const { closeAllModal, idProduct } = useModal()
 
     const { updateWork, deleteWork } = useRequest()
-    const { replaceWork, deleteListWork } = useList()
 
     const update = ( tech:IUpdateWork ) => {
 
         updateWork( tech, idProduct )
-            .then( ({ data }) => {
+            .then( () => {
 
-                toast.success("Trabalho atualizada",{
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                      },
-                } )
+                toast.success("Trabalho atualizado", configToast )
 
                 closeAllModal()
-                replaceWork( data, idProduct )
             } )
+            .catch( _ => {
+                toast.error("Trabalho não foi possibel atualizar", configToast )
+            })
     }
 
     const deleteW = () => {
 
-        toast.success("Trabalho excluida",{
-            style: {
-                borderRadius: '10px',
-                background: '#333',
-                color: '#fff',
-              },
-        } )
-
-        closeAllModal()
-        deleteListWork( idProduct )
         deleteWork( idProduct )
+        .then( _ => {
+            
+                toast.success("Trabalho excluida", configToast )
+                closeAllModal()
+            } )
     }
 
     return(
@@ -66,7 +65,12 @@ export default function UpdateWork(){
                         marginPositionTitle={{x:true}}
                     />
                 </Modal>
-                <Modal borderRadiusPosition="bottom" color="black" paddingPosition={{x:true, y:true}} maxWidth="small">
+                <Modal 
+                    borderRadiusPosition="bottom" 
+                    color="black" 
+                    paddingPosition={{x:true, y:true}} 
+                    maxWidth="small"
+                >
                     <Form onSubimt={handleSubmit(update)}>
                     <Input 
                             label="Nome" 

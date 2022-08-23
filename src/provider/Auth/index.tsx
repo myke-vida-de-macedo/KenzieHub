@@ -1,8 +1,9 @@
 import { createContext, ReactNode, useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { ILoginUser, useRequest } from "../Request"
-
 import toast from 'react-hot-toast';
+
+import { ILoginUser, useRequest } from "../Request"
+import { configToast } from "../../config/toast.config";
 
 interface IPropsAuth {
     children:ReactNode,
@@ -25,18 +26,11 @@ export const AuthProvider = ( { children }:IPropsAuth ) => {
 
     const login = ( user:ILoginUser ) => {
 
-        const toastId = toast.loading("Carregando",{
-            style: {
-                font: 'Inter',
-                borderRadius: '10px',
-                background: '#333',
-                color: '#fff',
-              },
-        })
+        const toastId = toast.loading("Carregando", configToast )
 
         loginUser( user )
             .then( ({ data:{ token, user }, status }) => {
-                
+
                 if( token && user && status === 200 ){
 
                     localStorage.setItem("@KenzieHub:token", token )
@@ -45,11 +39,7 @@ export const AuthProvider = ( { children }:IPropsAuth ) => {
                     setAuth(true)
                     toast.success("usuario logado", {
                         id:toastId,
-                        style: {
-                            borderRadius: '10px',
-                            background: '#333',
-                            color: '#fff',
-                          },
+                        ...configToast
                     })
                     navigate("/home")
                 }
@@ -57,11 +47,7 @@ export const AuthProvider = ( { children }:IPropsAuth ) => {
             .catch( _ =>{
                 toast.error("Usuario invalido", {
                     id:toastId,
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                      },
+                    ...configToast
                 })
             })
     }
@@ -72,13 +58,7 @@ export const AuthProvider = ( { children }:IPropsAuth ) => {
         localStorage.removeItem("@KenzieHub:token")
         localStorage.removeItem("@KenzieHub:user")
 
-        toast.success("Usuario desconectado", {
-            style: {
-                borderRadius: '10px',
-                background: '#333',
-                color: '#fff',
-              },
-        })
+        toast.success("Usuario desconectado", configToast )
     }
 
     const checkAuthorization = ( way: string ) => {
@@ -99,13 +79,7 @@ export const AuthProvider = ( { children }:IPropsAuth ) => {
                     navigate(way)
                 }else{
                     navigate("/login") 
-                    toast.error("Ops, isso não devia acontecer",{
-                        style: {
-                            borderRadius: '10px',
-                            background: '#333',
-                            color: '#fff',
-                          },
-                    } )
+                    toast.error("Ops, isso não devia acontecer", configToast )
                 }
             } )
             .catch( _ => navigate("/login") )

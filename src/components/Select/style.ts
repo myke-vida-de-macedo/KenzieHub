@@ -31,7 +31,6 @@ export const SelectStyled = styled.div`
     }
 
     margin: 8px;
-
     
     .MuiFormLabel-root{
         color:var(--color-text-input);

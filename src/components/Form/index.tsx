@@ -3,7 +3,7 @@ import { FormStyled } from "./style"
 
 interface IPropsForm {
     children:ReactNode,
-    onSubimt?:any
+    onSubimt?:( event?:any ) => void
 }
 
 export default function Form( { children, onSubimt }:IPropsForm ){

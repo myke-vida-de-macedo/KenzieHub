@@ -1,22 +1,23 @@
+import { yupResolver } from "@hookform/resolvers/yup"
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
+import { RegisterStyled } from "./style"
+
 import Modal from "../../components/Modal"
 import TransitionPage from "../../components/TransitionPage"
 import Form from "../../components/Form";
 import Input from "../../components/Input";
-
-import { RegisterStyled } from "./style"
 import Button from "../../components/Button";
 import Title from "../../components/Title";
 import Description from "../../components/Description";
 import Header from "../../components/Header";
 import Select from "../../components/Select"
 
-import { useForm } from "react-hook-form";
 import { useRequest } from "../../provider/Request";
-import { yupResolver } from "@hookform/resolvers/yup"
 import { shemaRegister } from "../../validation/register.validation";
-import { useNavigate } from "react-router-dom";
-
-import toast from "react-hot-toast";
+import { configToast } from "../../config/toast.config";
 
 export interface ICreateUser {
     email: string,
@@ -35,32 +36,25 @@ export default function Register(){
     const { createUser } = useRequest()
 
 
-    const { register, handleSubmit, formState:{ errors:{ name, email, password, confirmPassword, bio, contact, course_module } } } = useForm<ICreateUser>({
+    const { register, handleSubmit, formState:{ errors:{ 
+        name, 
+        email, 
+        password, 
+        confirmPassword, 
+        bio, contact, 
+        course_module 
+    } } } = useForm<ICreateUser>({
         resolver:yupResolver(shemaRegister)
     })
 
     const handleCreateUser = ( { confirmPassword, ...propertiesData }:ICreateUser ) => {
 
-        console.log( propertiesData )
-
         createUser( propertiesData )
             .then( _ => {
-                toast.success("Usuario cadastrado", {
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                      },
-                })
+                toast.success("Usuario cadastrado", configToast )
             } )
             .catch( _ => {
-                toast.error("Email já existe", {
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                      },
-                })
+                toast.error("Email já existe", configToast)
 
             } )
     }
