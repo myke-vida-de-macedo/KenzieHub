@@ -11,7 +11,7 @@ interface IPropsHeader {
     size?: "small" | "medium" | "large",
     colorButton?: "grey" | "pink" | "black",
     sizeButton?: "small" | "medium" | "large",
-    onClick?:()=> void,
+    onClick?: ( event?:any ) => void,
     colorTitle?: "pink",
     sizeTitle?: "small" | "large" | "medium",
     marginTitle?: "small" | "medium" | "large",

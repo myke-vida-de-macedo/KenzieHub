@@ -15,10 +15,9 @@ interface IPropsSelect {
 }
 
 export default function SelectEdited({ menu, label, register, name, message }:IPropsSelect){
-
     return(
         <SelectStyled>
-            <FormControl  error={message ? true : false} id="form" variant="filled" sx={{ minWidth: "100%" }}>
+            <FormControl error={message ? true : false} id="form" variant="filled" sx={{ minWidth: "100%" }}>
                 <InputLabel id="demo-select-small">{label}</InputLabel>
                 <Select 
                     size="small"

@@ -12,12 +12,6 @@ interface IValueList {
     upadateTechToWork:()=> void,
     changeTech:()=>void,
     changeWork:()=>void,
-    insertTech:( newTech:ITech )=> void,
-    insertWork:( newWork:IWork )=> void,
-    replaceTech:( newTech:ITech, id:string )=> void,
-    replaceWork:( newWork:IWork, id:string )=> void,
-    deleteListTech:(id:string)=> void,
-    deleteListWork:(id:string)=> void,
 }
 
 interface ITech {
@@ -62,9 +56,6 @@ export const ListProvider = ( { children }:IPropsList ) => {
                     setWork(works)
                 }
             })
-            .catch( error => {
-
-            })
         }
         
     }
@@ -77,42 +68,6 @@ export const ListProvider = ( { children }:IPropsList ) => {
         setType("Work")
     }
 
-    const insertTech = ( newTech:ITech ) => {
-        setTech([...tech, newTech])
-    }
-
-    const insertWork = (  newWork:IWork ) => {
-        setWork([...work, newWork])
-    }
-
-    const replaceTech = ( newTech:ITech, id:string ) => {
-
-        const filterTech = tech.filter( tech => tech.id != id )
-
-        setTech([ ...filterTech, newTech ])
-    }
-
-    const replaceWork = ( newWork:IWork, id:string ) => {
-
-        const filterWork = work.filter( tech => tech.id != id )
-
-        setWork([ ...filterWork, newWork ])
-    }
-
-    const deleteListTech = ( id:string ) => {
-
-        const filterTech = tech.filter( tech => tech.id != id )
-
-        setTech(filterTech)
-    }
-
-    const deleteListWork = ( id:string ) => {
-
-        const filterWork = work.filter( tech => tech.id != id )
-
-        setWork(filterWork)
-    }
-
     return(
         <listContext.Provider value={{
             type,
@@ -121,12 +76,6 @@ export const ListProvider = ( { children }:IPropsList ) => {
             upadateTechToWork,
             changeTech,
             changeWork,
-            insertTech,
-            insertWork,
-            replaceTech,
-            replaceWork,
-            deleteListTech,
-            deleteListWork,
         }}>
             { children }
         </listContext.Provider>

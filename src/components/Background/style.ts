@@ -14,6 +14,4 @@ export const BackgroundStyled = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    z-index:1000000000999999999999;
 `

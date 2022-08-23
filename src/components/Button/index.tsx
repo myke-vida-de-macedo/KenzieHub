@@ -9,7 +9,7 @@ interface IPropsBUtton {
     color?: "grey" | "pink" | "black" | "black2" | "transparent"
     fullWidth?:boolean,
     type?:"button" | "submit" | "reset",
-    onClick?:any,
+    onClick?:( event?:any ) => void,
     maxWidth?:number,
     mode?:"vertical",
     id?:string,
@@ -18,8 +18,22 @@ interface IPropsBUtton {
 export default function ButtonEdited( { children, size, fullWidth, color, type, onClick, maxWidth, mode, id }:IPropsBUtton ){
 
     return(
-        <ButtonStyled fullWidth={fullWidth} size={size} color={color} maxWidth={maxWidth} mode={mode}>
-            <Button onClick={onClick} id={id} type={type} size={ size } variant="contained">{ children }</Button>
+        <ButtonStyled 
+            fullWidth={fullWidth} 
+            size={size} 
+            color={color} 
+            maxWidth={maxWidth} 
+            mode={mode}
+        >
+            <Button 
+                onClick={onClick} 
+                id={id} 
+                type={type} 
+                size={ size } 
+                variant="contained"
+            >
+                { children }
+            </Button>
         </ButtonStyled>
     )
 }

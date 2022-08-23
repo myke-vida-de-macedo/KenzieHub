@@ -14,8 +14,9 @@ export const ButtonStyled = styled.div<IPropsButtonStyled>`
 
     ${({fullWidth})=> fullWidth&&css` width:100%;`}
 
-    .MuiButtonBase-root{
 
+    .MuiButtonBase-root{
+        
         text-transform:capitalize;
 
         ${({ size })=> 
