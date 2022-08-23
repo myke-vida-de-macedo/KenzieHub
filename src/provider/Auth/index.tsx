@@ -98,6 +98,7 @@ export const AuthProvider = ( { children }:IPropsAuth ) => {
                     setAuth(true)
                     navigate(way)
                 }else{
+                    navigate("/login") 
                     toast.error("Ops, isso não devia acontecer",{
                         style: {
                             borderRadius: '10px',

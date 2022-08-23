@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
 import { AuthProvider } from "./Auth"
+import { ListProvider } from "./List"
 import { ModalProvider } from "./Modal"
 import { RequestProvider } from "./Request"
 
@@ -13,7 +14,9 @@ export const Provider = ( { children }:IPropsProvider ) => (
     <RequestProvider>
         <AuthProvider>
             <ModalProvider>
-                { children }
+                <ListProvider>
+                    { children }
+                </ListProvider>
             </ModalProvider>
         </AuthProvider>
     </RequestProvider>

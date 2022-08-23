@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import { useModal } from "../../provider/Modal"
 import { BackgroundStyled } from "./style"
 
 interface IPropsBackground {
@@ -7,8 +8,17 @@ interface IPropsBackground {
 
 export default function Background({ children }:IPropsBackground){
 
+    const { closeAllModal } = useModal()
+
+    const closeBackground = ( { target }:any ) => {
+        
+        if( target.id === "background" || target.id === "background-2"  ){
+            closeAllModal()
+        }
+    }
+
     return(
-        <BackgroundStyled id="background">
+        <BackgroundStyled onClick={closeBackground} id="background">
             { children }
         </BackgroundStyled>
     )

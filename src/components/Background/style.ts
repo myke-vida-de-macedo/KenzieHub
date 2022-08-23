@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components"
 
 export const BackgroundStyled = styled.div`
-    position: absolute;
+    position: fixed;
     box-sizing: border-box;
 
     width: 100%;
@@ -14,4 +14,6 @@ export const BackgroundStyled = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    z-index:1000000000999999999999;
 `

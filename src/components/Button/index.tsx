@@ -11,14 +11,15 @@ interface IPropsBUtton {
     type?:"button" | "submit" | "reset",
     onClick?:any,
     maxWidth?:number,
-    mode?:"vertical"
+    mode?:"vertical",
+    id?:string,
 }
 
-export default function ButtonEdited( { children, size, fullWidth, color, type, onClick, maxWidth, mode }:IPropsBUtton ){
+export default function ButtonEdited( { children, size, fullWidth, color, type, onClick, maxWidth, mode, id }:IPropsBUtton ){
 
     return(
         <ButtonStyled fullWidth={fullWidth} size={size} color={color} maxWidth={maxWidth} mode={mode}>
-            <Button onClick={onClick} type={type} size={ size } variant="contained">{ children }</Button>
+            <Button onClick={onClick} id={id} type={type} size={ size } variant="contained">{ children }</Button>
         </ButtonStyled>
     )
 }

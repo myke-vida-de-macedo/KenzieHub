@@ -5,28 +5,26 @@ import Form from "../../../components/Form";
 import Header from "../../../components/Header";
 import Input from "../../../components/Input";
 import Modal from "../../../components/Modal";
-import Select from "../../../components/Select";
 import { useModal } from "../../../provider/Modal";
 import Nav from "../../../components/Nav";
-
-import { IUpdateTech, useRequest } from "../../../provider/Request";
-import { useList } from "../../../provider/List";
 import toast from "react-hot-toast";
+import { useList } from "../../../provider/List";
+import { IUpdateWork ,useRequest } from "../../../provider/Request";
 
-export default function UpdateTech(){
+export default function UpdateWork(){
 
-    const { register, handleSubmit, formState:{ errors:{ title, status } } } = useForm<IUpdateTech>()
+    const { register, handleSubmit, formState:{ errors:{ title, description, deploy_url } } } = useForm<IUpdateWork>()
     const { closeAllModal, idProduct } = useModal()
 
-    const { updateTech, deleteTech } = useRequest()
-    const { replaceTech, deleteListTech } = useList()
+    const { updateWork, deleteWork } = useRequest()
+    const { replaceWork, deleteListWork } = useList()
 
-    const update = ( tech:IUpdateTech ) => {
+    const update = ( tech:IUpdateWork ) => {
 
-        updateTech( tech, idProduct )
+        updateWork( tech, idProduct )
             .then( ({ data }) => {
 
-                toast.success("Tecnologia atualizada",{
+                toast.success("Trabalho atualizada",{
                     style: {
                         borderRadius: '10px',
                         background: '#333',
@@ -35,13 +33,13 @@ export default function UpdateTech(){
                 } )
 
                 closeAllModal()
-                replaceTech( data, idProduct )
+                replaceWork( data, idProduct )
             } )
     }
 
-    const deleteT = () => {
+    const deleteW = () => {
 
-        toast.success("Tecnologia excluida",{
+        toast.success("Trabalho excluida",{
             style: {
                 borderRadius: '10px',
                 background: '#333',
@@ -50,8 +48,8 @@ export default function UpdateTech(){
         } )
 
         closeAllModal()
-        deleteListTech( idProduct )
-        deleteTech( idProduct )
+        deleteListWork( idProduct )
+        deleteWork( idProduct )
     }
 
     return(
@@ -60,7 +58,7 @@ export default function UpdateTech(){
                 <Modal maxWidth="small">
                     <Header 
                         onClick={closeAllModal}
-                        name="Atualizar Tecnologia" 
+                        name="Atualizar Trabalho" 
                         buttonName="X" 
                         color="grey" 
                         sizeTitle="small" 
@@ -70,23 +68,27 @@ export default function UpdateTech(){
                 </Modal>
                 <Modal borderRadiusPosition="bottom" color="black" paddingPosition={{x:true, y:true}} maxWidth="small">
                     <Form onSubimt={handleSubmit(update)}>
-                        <Input 
-                            disabled
+                    <Input 
                             label="Nome" 
                             register={register} 
                             name="title" 
                             message={title?.message}
                         />
-                        <Select 
-                            label="Status" 
-                            menu={["Iniciante", "Intermediario", "Avançado"]}
+                        <Input 
+                            label="Descrição" 
                             register={register} 
-                            name="status" 
-                            message={status?.message}
+                            name="description" 
+                            message={description?.message}
+                        />
+                        <Input 
+                            label="Deploy" 
+                            register={register} 
+                            name="deploy_url" 
+                            message={deploy_url?.message}
                         />
                         <Nav>
                             <Button size="large" type="submit" color="pink">Salvar alterações</Button>
-                            <Button onClick={deleteT} size="large" type="button" color="grey">Excluir</Button>
+                            <Button onClick={deleteW} size="large" type="button" color="grey">Excluir</Button>
                         </Nav>
                     </Form>
                 </Modal>

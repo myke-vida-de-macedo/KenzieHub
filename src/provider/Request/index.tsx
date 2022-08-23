@@ -35,25 +35,26 @@ export interface ILoginUser {
     password: string,
 }
 
-interface ITech {
+export interface ITech {
     title: string,
 	status: "Iniciante" | "Intermediario" | "Avançado"
 }
 
-interface IUpdateTech {
+export interface IUpdateTech {
 	title?: string,
 	status?: "Iniciante" | "Intermediario" | "Avançado"
 }
 
-interface IWork {
+export interface IWork {
     title: string,
 	description: string,
 	deploy_url: string
 }
 
-interface IUpdateWork {
+export interface IUpdateWork {
 	title?: string,
     description?: string
+    deploy_url?:string
 }
 
 const requestContext = createContext<IPropsContextRequest>({} as IPropsContextRequest )
