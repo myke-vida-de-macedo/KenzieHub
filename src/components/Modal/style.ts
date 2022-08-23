@@ -16,7 +16,7 @@ export const ModalStyled = styled.div<IPropsStyledModal>`
 
     box-sizing:border-box; 
 
-    transition: 200ms;
+    transition: 300ms;
 
     width: 100%;
     ${({maxWidth})=> 
@@ -92,13 +92,13 @@ export const ModalStyled = styled.div<IPropsStyledModal>`
     ${({ mode }) => 
         mode === "vertical" ? 
             css`
-                justify-content: center;
+
                 align-items: center;
                 flex-wrap: wrap;
 
-                @media(min-width:430px){
+
                     justify-content: space-between;
-                }
+
             `
         :
             css`

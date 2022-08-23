@@ -1,3 +1,4 @@
+import { IPropsEvent } from "../../provider/Modal"
 import Button from "../Button"
 import Description from "../Description"
 import Title from "../Title"
@@ -5,13 +6,14 @@ import Title from "../Title"
 interface IPropsCard {
     name:string,
     description:string,
-    onClick?:()=> void,
+    onClick?:( { target, nativeEvent }: IPropsEvent )=> void,
+    id:string,
 }
 
-export default function Card( { name, description, onClick }: IPropsCard ){
+export default function Card( { name, description, onClick, id }: IPropsCard ){
 
     return(
-        <Button onClick={onClick} color="black2" maxWidth={700} mode="vertical" fullWidth>
+        <Button id={id} onClick={onClick} color="black2" maxWidth={700} mode="vertical" fullWidth>
            <Title size="small">{name}</Title>
            <Description>{ description }</Description>
         </Button>

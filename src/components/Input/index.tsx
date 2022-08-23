@@ -8,12 +8,13 @@ interface IPropsInput {
     register?:any,
     name?:string,
     message?:string | undefined,
+    disabled?:boolean,
 }
 
-export default function Input( { label, type, register, name, message }:IPropsInput ){
+export default function Input( { label, type, register, name, message, disabled }:IPropsInput ){
     
     return(
 
-        <InputStyled error={ message ? true : false } type={type} size="small" label={message ? message : label} variant="filled" margin="dense" color="info" {...register(name)}/>
+        <InputStyled disabled={disabled} error={ message ? true : false } type={type} size="small" label={message ? message : label} variant="filled" margin="dense" color="info" {...register(name)}/>
     )
 }
