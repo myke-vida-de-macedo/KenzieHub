@@ -84,7 +84,7 @@ export default function Login(){
                         color="grey" 
                         fullWidth
                     >
-                        Cadastre-se
+                        Cadastrar
                     </Button>
                 </Modal>
             </LoginStyled>
