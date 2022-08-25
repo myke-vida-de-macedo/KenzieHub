@@ -4,7 +4,7 @@ export const shemaRegister = yup.object().shape({
     email: yup
         .string()
         .required("Email obrigatorio")
-        .email(),
+        .email("Email invalido"),
     password: yup
         .string()
         .required("Senha obrigatorio")
