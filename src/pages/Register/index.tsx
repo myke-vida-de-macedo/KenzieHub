@@ -18,6 +18,7 @@ import Select from "../../components/Select"
 import { useRequest } from "../../provider/Request";
 import { shemaRegister } from "../../validation/register.validation";
 import { configToast } from "../../config/toast.config";
+import InputPassword from "../components/InputPassword";
 
 export interface ICreateUser {
     email: string,
@@ -97,15 +98,13 @@ export default function Register(){
                             name="email" 
                             message={email?.message}
                         />
-                        <Input 
-                            type="password"
+                        <InputPassword 
                             label="Senha"
                             register={register} 
                             name="password" 
                             message={password?.message}
                         />
-                        <Input 
-                            type="password" 
+                        <InputPassword 
                             label="Confirmar Senha"
                             register={register} 
                             name="confirmPassword" 

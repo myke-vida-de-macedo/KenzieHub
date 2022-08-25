@@ -1,7 +1,7 @@
 import styled from "styled-components"
-import TextField from '@mui/material/TextField';
+import { FormControl } from "@mui/material";
 
-export const InputStyled = styled(TextField)`
+export const StyledControl = styled(FormControl)`
 
     box-sizing: border-box;
     height: 48px;
@@ -29,14 +29,14 @@ export const InputStyled = styled(TextField)`
         box-sizing: border-box;
         height: 48px;
         min-height: 48px;
-        
+
         color: var(--color-text-input);
         
         @media(min-width:369px){
             height: 56px;
             min-height: 56px;
 
-            line-height:2em;
+            line-height:1.5em;
         }
     }
 
