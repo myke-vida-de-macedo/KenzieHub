@@ -13,9 +13,10 @@ interface IPropsBUtton {
     maxWidth?:number,
     mode?:"vertical",
     id?:string,
+    groupButton?:boolean
 }
 
-export default function ButtonEdited( { children, size, fullWidth, color, type, onClick, maxWidth, mode, id }:IPropsBUtton ){
+export default function ButtonEdited( { children, size, fullWidth, color, type, onClick, maxWidth, mode, id, groupButton }:IPropsBUtton ){
 
     return(
         <ButtonStyled 
@@ -24,6 +25,7 @@ export default function ButtonEdited( { children, size, fullWidth, color, type, 
             color={color} 
             maxWidth={maxWidth} 
             mode={mode}
+            groupButton={groupButton}
         >
             <Button 
                 onClick={onClick} 

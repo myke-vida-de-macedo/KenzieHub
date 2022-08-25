@@ -13,10 +13,12 @@ import Button from "../../components/Button";
 import Title from "../../components/Title";
 import Description from "../../components/Description";
 import Header from "../../components/Header";
+import InputPassword from "../components/InputPassword";
 
 import { useAuth } from "../../provider/Auth";
 import { ILoginUser } from "../../provider/Request"
 import { shemaLogin } from "../../validation/login.validation"
+
 
 export default function Login(){
 
@@ -61,12 +63,11 @@ export default function Login(){
                             name="email" 
                             message={email?.message}
                         />
-                        <Input 
-                            type="password" 
-                            label="Senha " 
+                        <InputPassword
                             register={register} 
-                            name="password" 
                             message={password?.message}
+                            name="password"
+                            label="Senha"
                         />
                         <Button 
                             type="submit" 
@@ -83,7 +84,7 @@ export default function Login(){
                         color="grey" 
                         fullWidth
                     >
-                        Cadastre-se
+                        Cadastrar
                     </Button>
                 </Modal>
             </LoginStyled>

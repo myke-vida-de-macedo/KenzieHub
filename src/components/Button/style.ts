@@ -5,7 +5,8 @@ interface IPropsButtonStyled {
     size?:"small" | "medium" | "large",
     color?: "grey" | "pink" | "black" | "black2" | "transparent"
     maxWidth?:number,
-    mode?:"vertical"
+    mode?:"vertical",
+    groupButton?:boolean
 }
 
 export const ButtonStyled = styled.div<IPropsButtonStyled>`
@@ -47,9 +48,10 @@ export const ButtonStyled = styled.div<IPropsButtonStyled>`
         
         width: 100%;
         max-width:${({ maxWidth }) => maxWidth ? `${maxWidth}px` : "369px"};
+        
+        margin: 8px 0px; 
 
-        margin: 8px 0px;
-
+        
         ${({ color })=>
         
             color === "black" ?
