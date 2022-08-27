@@ -3,13 +3,13 @@ import { FormStyled } from "./style"
 
 interface IPropsForm {
     children:ReactNode,
-    onSubimt?:( event?:any ) => void
+    onSubimt?:( event:React.FormEvent<HTMLFormElement> )=> void
 }
 
 export default function Form( { children, onSubimt }:IPropsForm ){
 
     return(
-        <FormStyled onSubmit={onSubimt}>
+        <FormStyled onSubmit={( e )=>onSubimt&&onSubimt( e )}>
             { children }
         </FormStyled>
     )

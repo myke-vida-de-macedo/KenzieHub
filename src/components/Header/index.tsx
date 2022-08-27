@@ -3,6 +3,7 @@ import Title from "../Title"
 import { HeaderStyled } from "./style"
 
 import { IMarginPosition } from "../Title"
+import { SyntheticEventTeste } from "../types"
 
 interface IPropsHeader {
     buttonName?:string,
@@ -11,7 +12,7 @@ interface IPropsHeader {
     size?: "small" | "medium" | "large",
     colorButton?: "grey" | "pink" | "black",
     sizeButton?: "small" | "medium" | "large",
-    onClick?: ( event?:any ) => void,
+    onClick?:(event:SyntheticEventTeste)=> void,
     colorTitle?: "pink",
     sizeTitle?: "small" | "large" | "medium",
     marginTitle?: "small" | "medium" | "large",

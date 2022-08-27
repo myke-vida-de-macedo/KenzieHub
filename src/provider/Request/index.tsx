@@ -1,5 +1,5 @@
-import { AxiosResponse } from "axios"
 import { createContext, ReactNode, useContext } from "react"
+import { IPromise } from "../../components/types"
 
 import { api } from "../../services/api.services"
 
@@ -8,18 +8,18 @@ interface IPropsRequest {
 }
 
 interface IPropsContextRequest {
-    profile:() => Promise<AxiosResponse<any, any>>,
-    createUser:( user:ICreateUser ) => Promise<AxiosResponse<any, any>>,
-    searchUser:( idUser:string ) => Promise<AxiosResponse<any, any>>,
-    listUserPage:( page:number ) => Promise<AxiosResponse<any, any>>,
-    listingUsers:() => Promise<AxiosResponse<any, any>>,
-    loginUser:( user:ILoginUser ) => Promise<AxiosResponse<any, any>>,
-    createTech:( tech:ITech ) => Promise<AxiosResponse<any, any>>,
-    updateTech:( upadateObj:IUpdateTech, idTech:string ) => Promise<AxiosResponse<any, any>>,
-    deleteTech:( idTech:string ) => Promise<AxiosResponse<any, any>>,
-    createWork:( work:IWork ) => Promise<AxiosResponse<any, any>>,
-    updateWork:( upadateObj:IUpdateWork, idWork:string ) => Promise<AxiosResponse<any, any>>,
-    deleteWork:( idWork:string ) => Promise<AxiosResponse<any, any>>,
+    profile:() => IPromise,
+    createUser:( user:ICreateUser ) => IPromise,
+    searchUser:( idUser:string ) => IPromise,
+    listUserPage:( page:number ) => IPromise,
+    listingUsers:() => IPromise,
+    loginUser:( user:ILoginUser ) => IPromise,
+    createTech:( tech:ITech ) => IPromise,
+    updateTech:( upadateObj:IUpdateTech, idTech:string ) => IPromise,
+    deleteTech:( idTech:string ) => IPromise,
+    createWork:( work:IWork ) => IPromise,
+    updateWork:( upadateObj:IUpdateWork, idWork:string ) => IPromise,
+    deleteWork:( idWork:string ) => IPromise,
 }
 
 export interface ICreateUser {
