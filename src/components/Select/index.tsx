@@ -5,11 +5,12 @@ import Select from '@mui/material/Select';
 import { FormControl, InputLabel } from "@mui/material";
 
 import { v4 as uuid } from "uuid"
+import { IRegister } from "../types";
 
 interface IPropsSelect {
     menu:string[],
     label:string,
-    register?:any,
+    register?:IRegister,
     name?:string,
     message?:string | undefined,
 }

@@ -1,4 +1,4 @@
-import { IPropsEvent } from "../../provider/Modal"
+import { SyntheticEventTeste } from "../../provider/Modal"
 import Button from "../Button"
 import Description from "../Description"
 import Title from "../Title"
@@ -6,7 +6,7 @@ import Title from "../Title"
 interface IPropsCard {
     name:string,
     description:string,
-    onClick?:( { target, nativeEvent }: IPropsEvent )=> void,
+    onClick?:( Event: SyntheticEventTeste )=> void,
     id:string,
 }
 

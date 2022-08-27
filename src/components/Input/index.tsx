@@ -1,11 +1,10 @@
+import { IRegister } from "../types"
 import { InputStyled } from "./style"
-
-
 
 interface IPropsInput {
     label:string,
     type?: "password" | "text",
-    register?:any,
+    register?:IRegister
     name?:string,
     message?:string | undefined,
     disabled?:boolean,
