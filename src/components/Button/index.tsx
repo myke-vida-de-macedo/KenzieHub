@@ -1,7 +1,8 @@
-import { ReactNode } from "react"
+import {  ReactNode } from "react"
 import { ButtonStyled } from "./style"
 
 import Button from '@mui/material/Button';
+
 
 interface IPropsBUtton {
     children:ReactNode
@@ -9,7 +10,7 @@ interface IPropsBUtton {
     color?: "grey" | "pink" | "black" | "black2" | "transparent"
     fullWidth?:boolean,
     type?:"button" | "submit" | "reset",
-    onClick?:( event?:any ) => void,
+    onClick?:Function,
     maxWidth?:number,
     mode?:"vertical",
     id?:string,
@@ -28,7 +29,7 @@ export default function ButtonEdited( { children, size, fullWidth, color, type, 
             groupButton={groupButton}
         >
             <Button 
-                onClick={onClick} 
+                onClick={( e )=>onClick&&onClick( e )} 
                 id={id} 
                 type={type} 
                 size={ size } 

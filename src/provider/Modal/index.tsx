@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react"
+import { BaseSyntheticEvent, createContext, ReactNode, SyntheticEvent, useContext, useState } from "react"
 
 interface IPropsModal {
     children:ReactNode,
@@ -12,9 +12,9 @@ interface IValueModal {
     isUpdateWork:boolean,
     closeAllModal:()=> void,
     openCreateTech:()=> void,
-    openUpdateTech:( { target, nativeEvent }: IPropsEvent )=> void,
+    openUpdateTech:( Event: SyntheticEventTeste )=> void,
     openCreateWork:()=> void,
-    openUpdateWork:( { target, nativeEvent }: IPropsEvent )=> void,
+    openUpdateWork:( Event: SyntheticEventTeste )=> void,
 }
 
 export interface IPropsEvent {
@@ -29,6 +29,14 @@ interface ITarget {
 
 interface INativeEvent {
     path:Element[]
+}
+
+interface EventTeste<T = Element, E = Event> extends BaseSyntheticEvent<E, ITarget & T, ITarget> {}
+
+type removeNativeEvent = Omit<EventTeste, "nativeEvent">
+
+export interface SyntheticEventTeste extends removeNativeEvent {
+    nativeEvent:INativeEvent
 }
 
 const modalContext = createContext<IValueModal>( {} as IValueModal )
@@ -52,7 +60,7 @@ export const ModalProvider = ( { children }:IPropsModal ) => {
     const openCreateTech = () => {    
         setIsCreateTech(true)
     }
-    const openUpdateTech = ( { target, nativeEvent }: IPropsEvent) => {
+    const openUpdateTech = ( { target, nativeEvent }: SyntheticEventTeste) => {
 
         let id = ""
 
@@ -70,8 +78,8 @@ export const ModalProvider = ( { children }:IPropsModal ) => {
     const openCreateWork = () => {
         setIsCreateWork(true)
     }
-    const openUpdateWork = ( { target, nativeEvent }:IPropsEvent) => {
-
+    const openUpdateWork = ( { target, nativeEvent }:SyntheticEventTeste) => {
+        
         let id = ""
 
         if( target.nodeName === "BUTTON" ){

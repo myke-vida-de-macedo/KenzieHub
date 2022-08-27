@@ -1,11 +1,12 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { FilledInput, IconButton, InputAdornment, InputLabel } from "@mui/material";
 import { useState } from "react";
+import { IRegister } from "../../../components/types";
 
 import { StyledControl } from "./style";
 
 interface IPropsInputPassword {
-    register:any,
+    register:IRegister,
     message:string | undefined,
     name:string,
     label:string
